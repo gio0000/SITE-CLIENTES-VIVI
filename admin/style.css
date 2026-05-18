@@ -1,0 +1,216 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family: Arial, sans-serif;
+    background:#ffffff;
+    color:#333;
+    padding:20px;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+header{
+    background:linear-gradient(
+        90deg,
+        #fa7000,
+        #fa7000
+    );
+
+    color:white;
+
+    padding:25px;
+
+    border-radius:16px;
+
+    margin-bottom:25px;
+
+    box-shadow:0 5px 20px rgba(250, 112, 0, 0.2);
+}
+
+header h1{
+    font-size:32px;
+    margin-bottom:5px;
+}
+
+header p{
+    opacity:0.9;
+}
+
+/* =========================
+   PEDIDOS
+========================= */
+
+#pedidos{
+    display:grid;
+    gap:20px;
+}
+
+/* =========================
+   CARD PEDIDO
+========================= */
+
+.pedido{
+
+    background:#fff;
+
+    border:2px solid #f0e6ff;
+
+    padding:20px;
+
+    border-radius:18px;
+
+    box-shadow:0 5px 20px rgba(0,0,0,0.06);
+
+    transition:0.3s;
+}
+
+.pedido:hover{
+    transform:translateY(-3px);
+
+    box-shadow:0 10px 25px rgba(250, 112, 0, 0.12);
+}
+
+.pedido h2{
+    color:#fa7000                   ;
+    margin-bottom:15px;
+}
+
+.pedido p{
+    margin:8px 0;
+    line-height:1.5;
+}
+
+.pedido ul{
+    margin-top:10px;
+    padding-left:20px;
+}
+
+.pedido li{
+    margin-bottom:6px;
+}
+
+/* =========================
+   OBSERVAÇÕES
+========================= */
+
+.obs-box{
+    background:#fcedd1;
+
+    border-left:5px solid #fa7000;
+
+    padding:12px;
+
+    border-radius:10px;
+
+    margin-top:12px;
+}
+
+/* =========================
+   TOTAL
+========================= */
+
+.total{
+    font-size:24px;
+
+    font-weight:bold;
+
+    color:#fa7000;
+
+    margin-top:15px;
+}
+
+/* =========================
+   BOTÕES
+========================= */
+
+.botoes{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    margin-top:20px;
+}
+
+button{
+
+    border:none;
+
+    padding:12px 18px;
+
+    border-radius:12px;
+
+    cursor:pointer;
+
+    font-weight:bold;
+
+    transition:0.3s;
+
+    background:#f7f0ff;
+
+    color:#fa7000                   ;
+
+    border:2px solid #ffe9b8;
+}
+
+button:hover{
+
+    background:#fa7000                   ;
+
+    color:white;
+
+    transform:translateY(-2px);
+
+    box-shadow:0 5px 15px rgba(250, 112, 0, 0.25);
+}
+
+/* =========================
+   STATUS
+========================= */
+
+.status-novo{
+    color:#ff3b30;
+    font-weight:bold;
+}
+
+.status-preparo{
+    color:#ff9500;
+    font-weight:bold;
+}
+
+.status-entrega{
+    color:#007aff;
+    font-weight:bold;
+}
+
+.status-finalizado{
+    color:#34c759;
+    font-weight:bold;
+}
+
+/* =========================
+   RESPONSIVO
+========================= */
+
+@media(max-width:700px){
+
+    body{
+        padding:12px;
+    }
+
+    header h1{
+        font-size:24px;
+    }
+
+    .pedido{
+        padding:15px;
+    }
+
+    button{
+        width:100%;
+    }
+}

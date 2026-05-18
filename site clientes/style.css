@@ -1,0 +1,767 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:'Poppins', sans-serif;
+    background: linear-gradient(180deg, #fefeff, #ffffff);
+    color:#2a2a2a;
+    overflow-x:hidden;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+header{
+    background: linear-gradient(135deg, #ec8e00, #ff9900);
+    padding:50px 20px;
+    text-align:center;
+    color:white;
+}
+
+header h1{ font-size:2.5rem; }
+header p{ opacity:.9; }
+
+/* =========================
+   NAV (CORRIGIDO - NÃO SOBREPÕE MAIS)
+========================= */
+
+nav{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:15px;
+    background:#fff;
+    padding:12px;
+    position:sticky;
+    top:0;
+    z-index:999;
+    box-shadow:0 2px 15px rgba(0,0,0,.08);
+}
+
+nav{
+
+    display:flex;
+
+    gap:12px;
+
+    flex-wrap:wrap;
+}
+nav a{
+    color:#ff9900;
+    font-weight:500;
+    padding:8px 12px;
+    border-radius:8px;
+    transition:.3s;
+}
+
+/* evita sobreposição em âncoras */
+section {
+    scroll-margin-top: 90px;
+    padding:40px 15px;
+}
+
+/* =========================
+   MENU TITLE
+========================= */
+
+section h2{
+    text-align:center;
+    margin-bottom:25px;
+    color:#fc5c00;
+}
+
+section h3{
+    margin:25px 0 15px;
+    color:#ffae00;
+}
+
+/* =========================
+   CARDS (CORRIGIDO MOBILE + NÃO CORTA)
+========================= */
+
+.menu-item{
+    display:flex;
+    gap:15px;
+    align-items:flex-start;
+    background:#fff;
+    padding:15px;
+    border-radius:15px;
+    margin-bottom:15px;
+    box-shadow:0 5px 15px rgba(0,0,0,.05);
+}
+
+.menu-item img{
+    width:110px;
+    height:110px;
+    object-fit:cover;
+    border-radius:12px;
+    flex-shrink:0;
+}
+
+.menu-item h4{
+    margin-bottom:5px;
+}
+
+
+
+
+
+    /* CARRINHO */
+    #cart{
+        width:100%;
+        max-width:100%;
+    }
+
+    /* HEADER */
+    header h1{
+        font-size:2rem;
+    }
+
+    header p{
+        font-size:.95rem;
+    }
+
+    /* TÍTULOS */
+    section h2{
+        font-size:1.7rem;
+    }
+
+    section h3{
+        font-size:1.3rem;
+    }
+
+    /* FOOTER */
+    footer{
+        text-align:left;
+        padding:25px 15px;
+    }
+
+/* BOTÕES TAMANHOS (ARRUMADO PRA NÃO GRUDAR) */
+.sizes{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    margin-top:10px;
+}
+
+.sizes button{
+    padding:8px 12px;
+    font-size:14px;
+    border-radius:8px;
+    width:auto;
+}
+
+
+@media (max-width: 768px){
+
+    /* card retangular centralizado */
+    .menu-item{
+        flex-direction: row;
+        align-items: center;
+
+        width: 92%;
+        max-width: 420px;
+
+        margin: 12px auto;
+
+        padding: 12px;
+
+        border-radius: 14px;
+    }
+
+    /* imagem menor pra não ocupar tudo */
+    .menu-item img{
+        width: 80px;
+        height: 80px;
+        border-radius: 10px;
+    }
+
+    /* texto ajustado */
+    .menu-item h4{
+        font-size: 15px;
+    }
+
+    .menu-item p{
+        font-size: 12px;
+    }
+
+    /* botões mais compactos */
+    .sizes{
+        gap: 6px;
+    }
+
+    .sizes button{
+        font-size: 12px;
+        padding: 6px 8px;
+    }
+}
+
+
+
+
+
+
+
+/* =========================
+   BOTÕES GERAIS
+========================= */
+
+button{
+    border:none;
+    background:#fc5c00;
+    color:#fff;
+    padding:10px 14px;
+    border-radius:10px;
+    cursor:pointer;
+    font-weight:600;
+}
+
+#cart-toggle{
+    position:fixed;
+    bottom:20px;
+    right:20px;
+    width:60px;
+    height:60px;
+    border-radius:50%;
+    z-index:1000;
+}
+
+#cart{
+    position:fixed;
+    top:0;
+    right:-100%;
+    width:320px;
+    height:100vh;
+    background:#fff;
+    padding:20px;
+    transition:.35s;
+    z-index:1001;
+    overflow-y:auto;
+}
+
+#cart.show{
+    right:0;
+}
+
+
+.toast{
+    position: fixed;
+    bottom: 100px;
+    right: 20px;
+
+    background: #fc5c00;
+    color: white;
+
+    padding: 12px 18px;
+    border-radius: 12px;
+
+    font-weight: 600;
+    box-shadow: 0 10px 25px rgba(0,0,0,.2);
+
+    opacity: 0;
+    transform: translateY(20px);
+    transition: .3s ease;
+
+    z-index: 99999;
+    pointer-events: none;
+}
+
+.toast.show{
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+/* =========================
+   CHECKOUT
+========================= */
+
+#checkout-modal{
+    position:fixed;
+    inset:0;
+    display:none;
+    justify-content:center;
+    align-items:center;
+    background:rgba(0,0,0,.6);
+    z-index:9999;
+}
+
+#checkout-modal > div{
+    background:#fff;
+    width:95%;
+    max-width:420px;
+    padding:20px;
+    border-radius:15px;
+}
+
+
+
+
+/* =========================
+   PROMOÇÕES
+========================= */
+
+#promocoes{
+    padding:50px 20px;
+    overflow:hidden;
+}
+
+.promo-wrapper{
+    position:relative;
+}
+
+.promo-carousel{
+    display:flex;
+    gap:20px;
+
+    overflow-x:auto;
+
+    scroll-behavior:smooth;
+
+    padding:10px;
+
+    scrollbar-width:none;
+}
+
+.promo-carousel::-webkit-scrollbar{
+    display:none;
+}
+
+/* CARD */
+.promo-card{
+    min-width:320px;
+    max-width:320px;
+
+    background:#fff;
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+    box-shadow:0 8px 20px rgba(0,0,0,.08);
+
+    flex-shrink:0;
+
+    transition:.3s;
+}
+
+.promo-card:hover{
+    transform:translateY(-5px);
+}
+
+.promo-card img{
+    width:100%;
+    height:180px;
+    object-fit:cover;
+}
+
+.promo-info{
+    padding:18px;
+}
+
+.promo-info h3{
+    color:#fc5c00;
+    margin-bottom:8px;
+}
+
+.promo-info p{
+    color:#555;
+    margin-bottom:15px;
+}
+
+.promo-info span{
+    display:block;
+
+    font-size:1.4rem;
+
+    font-weight:bold;
+
+    color:#fc5c00;
+
+    margin-bottom:15px;
+}
+
+.promo-info button{
+    width:100%;
+}
+
+/* BOTÕES */
+.promo-btn{
+    position:absolute;
+
+    top:50%;
+
+    transform:translateY(-50%);
+
+    width:45px;
+    height:45px;
+
+    border-radius:50%;
+
+    border:none;
+
+    background:#fc5c00;
+
+    color:white;
+
+    font-size:22px;
+
+    cursor:pointer;
+
+    z-index:10;
+
+    box-shadow:0 5px 15px rgba(0,0,0,.2);
+}
+
+.promo-btn.left{
+    left:-5px;
+}
+
+.promo-btn.right{
+    right:-5px;
+}
+
+/* MOBILE */
+@media(max-width:768px){
+
+    .promo-card{
+        min-width:260px;
+        max-width:260px;
+    }
+
+    .promo-card img{
+        height:150px;
+    }
+
+    .promo-btn{
+        display:none;
+    }
+}
+
+
+
+
+
+/* =========================
+   SOBRE
+========================= */
+
+#sobre{
+
+    padding:100px 20px;
+
+    background:
+    linear-gradient(
+        180deg,
+        #ffffff 0%,
+        #faf5ff 100%
+    );
+}
+
+.sobre-container{
+
+    max-width:900px;
+
+    margin:auto;
+
+    padding:20px 10px;
+
+    text-align:center;
+}
+
+.sobre-container h2{
+
+    font-size:2.5rem;
+
+    color:#f1cc85;
+
+    margin-bottom:30px;
+
+    font-weight:700;
+}
+
+.sobre-container p{
+
+    font-size:1.08rem;
+
+    color:#555;
+
+    line-height:1.9;
+
+    margin-bottom:18px;
+
+    font-weight:400;
+}
+
+.sobre-container strong{
+
+    color:#ff8800;
+
+    font-weight:600;
+}
+
+
+/* =========================
+   CONTATO
+========================= */
+
+#contato{
+
+    padding:100px 20px;
+
+    background:#ffffff;
+}
+
+.contato-container{
+
+    max-width:800px;
+
+    margin:auto;
+
+    padding:50px 30px;
+
+    text-align:center;
+
+    background:
+    linear-gradient(
+        135deg,
+        #ff9900,
+        #ff8800
+    );
+
+    color:white;
+
+    border-radius:30px;
+
+    box-shadow:
+    0 20px 50px rgba(146,1,204,.18);
+
+    position:relative;
+
+    overflow:hidden;
+}
+
+.contato-container::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:300px;
+    height:300px;
+
+    background:rgba(255,255,255,.08);
+
+    border-radius:50%;
+
+    top:-120px;
+    right:-120px;
+}
+
+.contato-container h2{
+
+    font-size:2.3rem;
+
+    margin-bottom:25px;
+
+    font-weight:700;
+
+    position:relative;
+}
+
+.contato-container p{
+
+    font-size:1.1rem;
+
+    margin:14px 0;
+
+    font-weight:500;
+
+    position:relative;
+}
+
+.contato-container a{
+
+    color:white;
+
+    text-decoration:none;
+
+    transition:.2s;
+}
+
+.contato-container a:hover{
+
+    opacity:.8;
+}
+
+
+footer{
+
+    background:#3a3a3a;
+
+    padding:50px 20px;
+
+    color:white;
+}
+
+.footer-container{
+
+    max-width:1200px;
+
+    margin:auto;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:30px;
+
+    flex-wrap:wrap;
+}
+
+.footer-brand h3{
+
+    font-size:1.5rem;
+
+    margin-bottom:10px;
+}
+
+.footer-brand p,
+.footer-dev p{
+
+    color:rgba(255,255,255,.75);
+
+    line-height:1.8;
+}
+
+.footer-dev strong{
+
+    color:#ffae00;
+}
+
+.footer-social{
+
+    display:flex;
+
+    gap:15px;
+}
+
+.footer-social a{
+
+    width:50px;
+    height:50px;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    border-radius:50%;
+
+    background:rgba(255,255,255,.08);
+
+    color:white;
+
+    font-size:20px;
+
+    text-decoration:none;
+
+    transition:.25s;
+}
+
+.footer-social a:hover{
+
+    transform:translateY(-5px);
+
+    background:#ff9100;
+
+    box-shadow:0 10px 25px rgba(2, 2, 2, 0.35);
+}
+
+@media(max-width:768px){
+
+    .footer-container{
+
+        flex-direction:column;
+
+        text-align:center;
+    }
+
+    .footer-social{
+
+        justify-content:center;
+    }
+}
+
+
+/* =========================
+   BANNER RODÍZIO
+========================= */
+
+.rodizio-banner{
+    padding:20px;
+}
+
+.rodizio-banner img{
+    width:100%;
+
+    height:auto;
+
+    border-radius:25px;
+
+    display:block;
+
+    box-shadow:0 10px 30px rgba(0,0,0,.12);
+}
+
+/* MOBILE */
+@media(max-width:768px){
+
+    .rodizio-banner{
+        padding:12px;
+    }
+
+    .rodizio-banner img{
+        border-radius:18px;
+    }
+}
+
+
+
+
+
+
+
+
+.toast{
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #111;
+    color: white;
+    padding: 14px 18px;
+    border-radius: 12px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: 0.3s;
+    z-index: 9999;
+}
+
+.toast.show{
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+footer p{
+    margin: 5px 0;
+}

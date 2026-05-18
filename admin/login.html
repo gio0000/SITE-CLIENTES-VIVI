@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Login Admin</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins', sans-serif;
+}
+
+body{
+    width:100%;
+    height:100vh;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    background:
+    linear-gradient(135deg, #9201cc, #d26cff);
+}
+
+.login-box{
+
+    width:90%;
+    max-width:400px;
+
+    background:white;
+
+    padding:35px;
+
+    border-radius:25px;
+
+    box-shadow:0 10px 40px rgba(0,0,0,.2);
+
+    text-align:center;
+}
+
+.login-box h1{
+
+    color:#9201cc;
+
+    margin-bottom:10px;
+}
+
+.login-box p{
+
+    color:#666;
+
+    margin-bottom:25px;
+
+    font-size:14px;
+}
+
+.input-group{
+
+    margin-bottom:18px;
+}
+
+.input-group input{
+
+    width:100%;
+
+    padding:14px;
+
+    border-radius:12px;
+
+    border:1px solid #ddd;
+
+    outline:none;
+
+    font-size:15px;
+
+    transition:.2s;
+}
+
+.input-group input:focus{
+
+    border-color:#9201cc;
+
+    box-shadow:0 0 0 4px rgba(146,1,204,.12);
+}
+
+button{
+
+    width:100%;
+
+    padding:14px;
+
+    border:none;
+
+    border-radius:12px;
+
+    background:#9201cc;
+
+    color:white;
+
+    font-size:16px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:.2s;
+}
+
+button:hover{
+
+    background:#b84dff;
+
+    transform:translateY(-2px);
+}
+
+.logo{
+
+    font-size:50px;
+
+    margin-bottom:10px;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="login-box">
+
+    <div class="logo">🍕</div>
+
+    <h1>Painel Admin</h1>
+
+    <p>
+        Faça login para acessar os pedidos
+    </p>
+
+    <div class="input-group">
+        <input
+            type="email"
+            id="email"
+            placeholder="Digite seu email"
+        >
+    </div>
+
+    <div class="input-group">
+        <input
+            type="password"
+            id="senha"
+            placeholder="Digite sua senha"
+        >
+    </div>
+
+    <button onclick="login()">
+        Entrar
+    </button>
+
+</div>
+
+<script type="module">
+
+import { initializeApp }
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+import {
+    getAuth,
+    signInWithEmailAndPassword,
+    onAuthStateChanged
+}
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+
+/* =========================
+   FIREBASE
+========================= */
+
+const firebaseConfig = {
+
+    apiKey: "AIzaSyAbAPR1iIWlX3pnPt6pS7NIFrpbVeA3xH4",
+  authDomain: "delivery-da-vivi.firebaseapp.com",
+  projectId: "delivery-da-vivi",
+};
+
+const app = initializeApp(firebaseConfig);
+
+const auth = getAuth(app);
+
+
+/* =========================
+   LOGIN
+========================= */
+
+window.login = async function(){
+
+    const email =
+        document.getElementById("email").value;
+
+    const senha =
+        document.getElementById("senha").value;
+
+    if(!email || !senha){
+
+        return alert(
+            "Preencha email e senha"
+        );
+    }
+
+    try{
+
+        await signInWithEmailAndPassword(
+            auth,
+            email,
+            senha
+        );
+
+        alert("Login realizado!");
+
+        window.location.href = "index.html";
+
+    }catch(e){
+
+        alert(
+            "Email ou senha inválidos"
+        );
+
+        console.error(e);
+    }
+};
+
+
+/* =========================
+   MANTER LOGIN
+========================= */
+
+onAuthStateChanged(auth, (user) => {
+
+    if(user){
+
+        console.log(
+            "Usuário logado:",
+            user.email
+        );
+    }
+
+});
+
+</script>
+</body>
+</html>
