@@ -509,17 +509,14 @@ button{
 
 .produto-img {
     width: 100%;
-    max-width: 400px;
+    max-width: 500px;
     height: auto;
-    border-radius: 15px;
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
-    transition: transform 0.3s ease;
     display: block;
+    margin: 0 auto;
+    border-radius: 12px;
 }
 
-.produto-img:hover {
-    transform: scale(1.03);
-}
+
 
 
 /* =========================
