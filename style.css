@@ -514,7 +514,11 @@ button{
   display: block;
 }
 
-
+@media (max-width: 768px) {
+  .full-img {
+  height: 100dvh;
+}
+}
 
 
 /* =========================
