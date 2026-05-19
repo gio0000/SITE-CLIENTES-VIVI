@@ -514,10 +514,20 @@ button{
   display: block;
 }
 
+body {
+  margin: 0;
+}
+
+.full-img {
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  display: block;
+}
 @media (max-width: 768px) {
   .full-img {
-  height: 100dvh;
-}
+    height: 100dvh; /* melhor que 100vh no celular */
+  }
 }
 
 
