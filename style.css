@@ -508,12 +508,10 @@ button{
 }
 
 .produto-img {
-    width: 100%;
-    max-width: 500px;
-    height: auto;
-    display: block;
-    margin: 0 auto;
-    border-radius: 12px;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover; /* faz preencher sem distorcer */
+  display: block;
 }
 
 
